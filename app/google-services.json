@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "487738145736",
+    "firebase_url": "https://worktimeapp-3d0f5.firebaseio.com",
+    "project_id": "worktimeapp-3d0f5",
+    "storage_bucket": "worktimeapp-3d0f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487738145736:android:1ec48aef132791af",
+        "android_client_info": {
+          "package_name": "edu.galileo.android.workingtimeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487738145736-snives98fdcd75pbpg9avfcr8rpi567e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv7EF3qUXhm_wZjYXSYGntGO5__D88_aE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
