@@ -34,7 +34,7 @@ public class LoginRepositoryImpl implements LoginRepository{
     public LoginRepositoryImpl() {
         this.helper = FirebaseHelper.getInstance();
         this.dataReference = helper.getDataReference();
-        this.auth = FirebaseAuth.getInstance().;
+        this.auth = FirebaseAuth.getInstance();
     }
 
     @Override
