@@ -29,21 +29,39 @@ public class LoginRepositoryImpl implements LoginRepository{
     private FirebaseHelper helper;
     private DatabaseReference dataReference;
     private DatabaseReference myUserReference;
+    private FirebaseAuth auth;
 
     public LoginRepositoryImpl() {
         this.helper = FirebaseHelper.getInstance();
         this.dataReference = helper.getDataReference();
+        this.auth = FirebaseAuth.getInstance();
     }
 
     @Override
-    public void signUp(String email, String password) {
-        postEvent(LoginEvent.onSignUpSuccess);
+    public void signUp(final String email, final String password) {
+        try {
+            auth.createUserWithEmailAndPassword(email, password)
+            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    postEvent(LoginEvent.onSignUpSuccess);
+                    signIn(email, password);
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    postEvent(LoginEvent.onSignUpError, e.getMessage());
+                }
+            });
+        }catch (Exception e){
+            postEvent( LoginEvent.onSignUpError, e.getMessage());
+        }
     }
 
     @Override
     public void signIn(String email, String password) {
         try{
-            FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword( email, password)
                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
