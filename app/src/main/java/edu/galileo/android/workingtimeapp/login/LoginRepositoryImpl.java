@@ -34,7 +34,7 @@ public class LoginRepositoryImpl implements LoginRepository{
     public LoginRepositoryImpl() {
         this.helper = FirebaseHelper.getInstance();
         this.dataReference = helper.getDataReference();
-        this.auth = FirebaseAuth.getInstance();
+        this.auth = FirebaseAuth.getInstance().;
     }
 
     @Override
@@ -66,24 +66,7 @@ public class LoginRepositoryImpl implements LoginRepository{
                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            myUserReference = helper.getMyUserReference();
-                            myUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    User currentUser = dataSnapshot.getValue(User.class);
-                                    if(currentUser == null){
-                                        String email = helper.getAuthUserEmail();
-                                        if(email != null){
-                                            currentUser = new User();
-                                            myUserReference.setValue(currentUser);
-                                        }
-                                    }
-                                    postEvent(LoginEvent.onSignInSuccess);
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {}
-                            });
+                            initSignIn();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -99,7 +82,37 @@ public class LoginRepositoryImpl implements LoginRepository{
 
     @Override
     public void checkSession() {
-        postEvent(LoginEvent.onFailedToRecoverSession);
+        if( auth.getCurrentUser() != null ){
+            initSignIn();
+        }else {
+            postEvent(LoginEvent.onFailedToRecoverSession);
+        }
+    }
+
+    private void initSignIn(){
+        myUserReference = helper.getMyUserReference();
+        myUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User currentUser = dataSnapshot.getValue(User.class);
+                if(currentUser == null){
+                    registerNewUser();
+                }
+                postEvent(LoginEvent.onSignInSuccess);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+    }
+
+    private void registerNewUser(){
+        String email = helper.getAuthUserEmail();
+        if(email != null){
+            User currentUser = new User();
+            currentUser.setEmail(email);
+            myUserReference.setValue(currentUser);
+        }
     }
 
     private void postEvent(int type, String errorMessage ){

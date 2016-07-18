@@ -63,8 +63,8 @@ public class LoginPresenterImpl implements LoginPresenter {
         interactor.doSignUp(email, password);
     }
 
-    @Subscribe
     @Override
+    @Subscribe
     public void onEventMainThread(LoginEvent event) {
         switch (event.getEventType()){
             case LoginEvent.onSignInSuccess:
