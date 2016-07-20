@@ -16,7 +16,7 @@ import butterknife.OnClick;
 import edu.galileo.android.workingtimeapp.R;
 import edu.galileo.android.workingtimeapp.login.LoginPresenter;
 import edu.galileo.android.workingtimeapp.login.LoginPresenterImpl;
-import edu.galileo.android.workingtimeapp.main.MainActivity;
+import edu.galileo.android.workingtimeapp.timemarklist.ui.TimeMarkListActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void navigateToMainScreen() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, TimeMarkListActivity.class));
     }
 
     @OnClick(R.id.btnSignup)

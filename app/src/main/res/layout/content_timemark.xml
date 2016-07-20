@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDate"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="2016/07/20"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtStartTime"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="09:00"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtEndTime"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="18:00"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtObservation"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:text="Dia Normal"/>
+</LinearLayout>

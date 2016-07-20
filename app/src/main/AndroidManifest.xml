@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity"></activity>
+        <activity android:name=".timemarklist.ui.TimeMarkListActivity"
+            android:label="@string/timemarklist.title"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
